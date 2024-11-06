@@ -12,9 +12,11 @@ import javax.persistence.Persistence;
 import lecture5.jpa.entities.Book;
 import lecture5.jpa.entities.Magazine;
 import lecture5.jpa.entities.Publication;
+import lecture5.jpa.entities.Ticket;
 import lecture5.jpa.with_controllers.controllers.BookJpaController;
 import lecture5.jpa.with_controllers.controllers.MagazineJpaController;
 import lecture5.jpa.with_controllers.controllers.PublicationJpaController;
+import lecture5.jpa.with_controllers.controllers.TicketJpaController;
 
 /**
  *
@@ -31,19 +33,27 @@ public class App {
             book.setAuthor("Author");
             book.setPrice(29.99d);
             book.setTitle("Book Title");
+            
+            Ticket ticket=new Ticket();
+            ticket.setDescription("Taylor Swift concert...");
 
             Magazine magazine = new Magazine();
             long millis = System.currentTimeMillis();
             magazine.setCurrIssue(new java.sql.Date(millis));
             magazine.setPrice(29.99d);
             magazine.setTitle("Magazine Title");
-            
+                        
             BookJpaController bookController=new BookJpaController(emf);
             MagazineJpaController magazineController=new MagazineJpaController(emf);
             PublicationJpaController publicationController=new PublicationJpaController(emf);
+            TicketJpaController ticketController=new TicketJpaController(emf);
             
             bookController.create(book);
             magazineController.create(magazine);
+            ticketController.create(ticket);
+            
+            // your database should have 2 tables, one for publications, another for tickets
+            // confirm in debug and ide views
             
             System.out.println("----------------------------");
             System.out.println("List of Books");
