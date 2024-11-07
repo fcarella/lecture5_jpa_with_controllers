@@ -20,6 +20,16 @@ public abstract class Publication extends Editable implements SaleableItem, Seri
     private Long id;
     @Basic
     private String title;
+    @Basic
+    private int copies;
+
+    public int getCopies() {
+        return copies;
+    }
+
+    public void setCopies(int copies) {
+        this.copies = copies;
+    }
 
     @Override
     public String toString() {
